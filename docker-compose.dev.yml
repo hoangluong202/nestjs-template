@@ -1,0 +1,27 @@
+version: '3.5'
+
+services:
+  db:
+    container_name: db
+    image: postgres:latest
+    restart: always
+    environment:
+      - POSTGRES_USER= ${POSTGRES_USER}
+      - POSTGRES_PASSWORD= ${POSTGRES_PASSWORD}
+      - POSTGRES_DB= ${POSTGRES_DB}
+    volumes:
+      - ./db-data/pgdata:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+  
+  db_adminer:
+    container_name: db_adminer
+    image: adminer:latest
+    restart: always
+    ports:
+      - 8080:8080
+    depends_on:
+      - db
+
+
+      
