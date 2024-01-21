@@ -17,6 +17,8 @@ echo "Pull latest changes..."
 git pull origin main
 
 # Run docker-compose
+echo "Remove all Docker images..."
+sudo docker rmi -f $(sudo docker images -q)
 echo "Run docker-compose..."
 sudo docker compose -f docker-compose.staging.yml up -d
 
