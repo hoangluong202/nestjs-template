@@ -10,9 +10,13 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: '18'
-      - env:
-          SSH_PEM_KEY: ${{ secrets.SSH_PEM_KEY }}
-      - run: npm install
-      - run: npm install -g @nestjs/cli
+      - run: |
+          mkdir -p ~/.ssh/
+          echo "${{ secrets.SSH_PEM_KEY }}" > ~/.ssh/id_rsa.pem
+          chmod 600 ~/.ssh/id_rsa.pem
+          ssh-keyscan 3.95.11.114 >> ~/.ssh/known_hosts
+      - run: |
+          npm install
+          npm install -g @nestjs/cli
       - run: npm run build
       - run: npm run deploy
