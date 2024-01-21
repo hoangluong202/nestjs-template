@@ -3,7 +3,7 @@ on:
   push:
     branches: [main]
 jobs:
-  build-test-deploy:
+  build-deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -15,8 +15,4 @@ jobs:
           echo "${{ secrets.SSH_PEM_KEY }}" > ~/.ssh/id_rsa.pem
           chmod 600 ~/.ssh/id_rsa.pem
           ssh-keyscan 3.95.11.114 >> ~/.ssh/known_hosts
-      - run: |
-          npm install
-          npm install -g @nestjs/cli
-      - run: npm run build
       - run: npm run deploy
