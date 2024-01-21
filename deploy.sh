@@ -17,11 +17,12 @@ echo "Pull latest changes..."
 git pull origin main
 
 # Remove all unused Docker objects
-echo "Remove all unused Docker objects..."
+echo "Remove all"
+sudo docker compose -f docker-compose.staging.yml down
 sudo docker system prune -a -f
 
 # Run docker-compose
 echo "Run docker-compose..."
-sudo docker-compose -f docker-compose.staging.yml up -d
+sudo docker compose -f docker-compose.staging.yml up -d
 
 EOF
