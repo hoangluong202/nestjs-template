@@ -10,7 +10,7 @@ export class UserRepository {
     private readonly userRepository: Repository<UserEntity>,
   ) {}
   helloRepository(): string {
-    return 'Data to be returned from db';
+    return 'Hello World!';
   }
 
   findAll(): Promise<UserEntity[]> {
