@@ -3,7 +3,7 @@
 # Variables
 SERVER="ubuntu@3.95.11.114"
 REPO_DIR="nestjs-template"
-SCRIPT="sudo docker-compose -f docker-compose.staging.yml up -d"
+SCRIPT="sudo docker compose -f docker-compose.staging.yml up -d"
 
 # SSH to server
 echo "SSH to server..."
