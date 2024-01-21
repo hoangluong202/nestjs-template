@@ -5,6 +5,11 @@ SERVER="ubuntu@3.95.11.114"
 REPO_DIR="nestjs-template"
 SCRIPT="sudo docker-compose -f docker-compose.staging.yml up -d"
 
+# Setup SSH
+mkdir -p ~/.ssh
+CP ~/.ssh/key-pair-login.pem ~/.ssh/
+chmod +x ~/.ssh/key-pair-login.pem
+
 # SSH to server
 ssh -i ~/.ssh/key-pair-login.pem ubuntu@3.95.11.114 << EOF
 
