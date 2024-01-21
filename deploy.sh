@@ -6,7 +6,7 @@ REPO_DIR="nestjs-template"
 
 # SSH to server
 echo "SSH to server..."
-ssh -i ~/.ssh/id_rsa.pem ubuntu@3.95.11.114 << EOF
+ssh -i ~/.ssh/id_rsa.pem $SERVER << EOF
 
 # Navigate to project folder
 echo "Navigate to project folder..."
@@ -16,10 +16,12 @@ cd $REPO_DIR
 echo "Pull latest changes..."
 git pull origin main
 
+# Remove all unused Docker objects
+echo "Remove all unused Docker objects..."
+sudo docker system prune -a -f
+
 # Run docker-compose
-echo "Remove all Docker images..."
-sudo docker rmi -f $(sudo docker images -q)
 echo "Run docker-compose..."
-sudo docker compose -f docker-compose.staging.yml up -d
+sudo docker-compose -f docker-compose.staging.yml up -d
 
 EOF
